@@ -1,20 +1,20 @@
-import AutoImport from 'astro-auto-import'
+// import AutoImport from 'astro-auto-import'
 import { defineConfig } from 'astro/config'
 import { resolve } from 'path'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeSlug from 'rehype-slug'
-import preprocess from 'svelte-preprocess'
+// import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+// import rehypeSlug from 'rehype-slug'
+// import preprocess from 'svelte-preprocess'
 import mkcert from 'vite-plugin-mkcert'
 
 // https://astro.build/config
 import tailwind from '@astrojs/tailwind'
 
 // https://astro.build/config
-import preact from '@astrojs/preact'
-import svelte from '@astrojs/svelte'
+// import preact from '@astrojs/preact'
+// import svelte from '@astrojs/svelte'
 
 // https://astro.build/config
-import mdx from '@astrojs/mdx'
+// import mdx from '@astrojs/mdx'
 import starlight from '@astrojs/starlight'
 
 const noExternal = ['three', 'troika-three-text', 'postprocessing', '@pmndrs/vanilla']
@@ -29,27 +29,14 @@ export default defineConfig({
     inlineStylesheets: 'never'
   },
   integrations: [
-    AutoImport({
-      imports: [
-        '$components/Example/Example.astro',
-        '$components/Tip/Tip.astro',
-        '$components/ManualInstallGuide/ManualInstallGuide.svelte',
-        '$components/Card/Card.astro'
-      ]
-    }),
-    tailwind(),
-    svelte({
-      preprocess: preprocess({
-        postcss: true
-      })
-    }),
-    // mdx({
-    //   rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
+    // AutoImport({
+    //   imports: [
+    //     '$components/Example/Example.astro',
+    //     '$components/Tip/Tip.astro',
+    //     '$components/ManualInstallGuide/ManualInstallGuide.svelte',
+    //     '$components/Card/Card.astro'
+    //   ]
     // }),
-    preact({
-      compat: true,
-      include: ['**/*.tsx']
-    }),
     starlight({
       title: 'Threlte',
       components: {},
@@ -61,15 +48,28 @@ export default defineConfig({
           label: 'Start Here',
           items: [
             // Each item here is one entry in the navigation menu.
-            { label: 'Test', link: '/test' }
+            { label: 'Example', link: '/guides/example' }
           ]
+        },
+        {
+          label: 'Reference',
+          autogenerate: { directory: 'reference' }
         }
-        // {
-        //   label: 'Reference',
-        //   autogenerate: { directory: 'reference' }
-        // }
       ]
-    })
+    }),
+    // svelte({
+    //   preprocess: preprocess({
+    //     postcss: true
+    //   })
+    // }),
+    // mdx({
+    //   rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
+    // }),
+    // preact({
+    //   compat: true,
+    //   include: ['**/*.tsx']
+    // }),
+    tailwind()
   ],
   output: 'static',
   vite: {

@@ -127,10 +127,10 @@ export const showcaseCollection = defineCollection({
 
 // 3. Export a single `collections` object to register your collection(s)
 export const collections = {
-  docs: defineCollection({ schema: docsSchema() }),
-  reference: referenceCollection,
-  learn: learnCollection,
-  testimonials: testimonialsCollection,
-  showcase: showcaseCollection,
-  examples: examplesCollection
+  docs: defineCollection({ schema: docsSchema() })
+  // reference: referenceCollection,
+  // learn: learnCollection,
+  // testimonials: testimonialsCollection,
+  // showcase: showcaseCollection,
+  // examples: examplesCollection
 }
