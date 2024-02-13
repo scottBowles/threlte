@@ -15,6 +15,7 @@ import svelte from '@astrojs/svelte'
 
 // https://astro.build/config
 import mdx from '@astrojs/mdx'
+import starlight from '@astrojs/starlight'
 
 const noExternal = ['three', 'troika-three-text', 'postprocessing', '@pmndrs/vanilla']
 if (process.env.NODE_ENV === 'production') {
@@ -42,10 +43,33 @@ export default defineConfig({
         postcss: true
       })
     }),
-    mdx({
-      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
+    // mdx({
+    //   rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
+    // }),
+    preact({
+      compat: true,
+      include: ['**/*.tsx']
     }),
-    preact({ compat: true, include: ['**/*.tsx'] })
+    starlight({
+      title: 'Threlte',
+      components: {},
+      social: {
+        github: 'https://github.com/withastro/starlight'
+      },
+      sidebar: [
+        {
+          label: 'Start Here',
+          items: [
+            // Each item here is one entry in the navigation menu.
+            { label: 'Test', link: '/test' }
+          ]
+        }
+        // {
+        //   label: 'Reference',
+        //   autogenerate: { directory: 'reference' }
+        // }
+      ]
+    })
   ],
   output: 'static',
   vite: {
